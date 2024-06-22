@@ -6,16 +6,16 @@ import com.microsoft.azure.functions.HttpRequestMessage;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.function.Function;
 
 @Component
+@AllArgsConstructor
 public class MyAzureFunction {
 
-    @Autowired
     private Function<String, String> uppercase;
 
     @FunctionName("hello")
@@ -24,7 +24,7 @@ public class MyAzureFunction {
                     methods = {HttpMethod.GET},
                     authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             ExecutionContext context) {
-        return "hello world";
+        return "hello world from Azure function with github Actions :)";
     }
 
 }
